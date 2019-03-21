@@ -1,5 +1,6 @@
 <resources>
-   <string name="app_name">Flag Quiz Hieu Ngo</string>
+   <string name="app_name">Tic Tac Toe Hang Man HNLS</string>
+   <string name="title_activity_main">MainActivity</string>
    <string name="action_settings">Settings</string>
    <string name="number_of_choices">Number of Choices</string>
    <string name="number_of_choices_description">Display 2, 4, 6 or 8 guess buttons</string>
@@ -11,8 +12,23 @@
    <string name="default_region_message">One region must be selected. Setting North America as the default region.</string>
    <string name="restarting_quiz">Quiz will restart with your new settings</string>
    <string name="question">Question %1$d of %2$d</string>
-   <string name="reset_quiz">Reset Quiz</string>
+   <string name="reset_quiz">Reset Game</string>
    <string name="image_description">Image of the current flag in the quiz</string>
    <string name="default_region">North_America</string>
    <string name="title_activity_settings">Settings</string>
+    <string name="button_erase">Erase Image</string>
+    <string name="button_set_color">Set Color</string>
+    <string name="button_set_line_width">Set Line Width</string>
+    <string name="line_imageview_description">This displays the line thickness</string>
+    <string name="label_alpha">Alpha</string>
+    <string name="label_red">Red</string>
+    <string name="label_green">Green</string>
+    <string name="label_blue">Blue</string>
+    <string name="menuitem_delete">Erase Drawing</string>
+    <string name="menuitem_color">Color</string>
+    <string name="menuitem_line_width">Line Width</string>
+    <string name="message_erase">Erase the drawing?</string>
+    <string name="title_color_dialog">Choose Color</string>
+    <string name="title_line_width_dialog">Choose Line Width</string>
+
 </resources>
