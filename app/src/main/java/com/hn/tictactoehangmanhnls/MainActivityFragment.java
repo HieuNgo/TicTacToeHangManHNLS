@@ -23,9 +23,12 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,22 +44,30 @@ public class MainActivityFragment extends Fragment {
 
    private static final int FLAGS_IN_QUIZ = 10;
 
-   private List<String> fileNameList; // flag file names
-   private List<String> quizCountriesList; // countries in current quiz
-   private Set<String> regionsSet; // world regions in current quiz
-   private String correctAnswer; // correct country for the current flag
+   private List<String> fileNameList; // hangman file names
+   private List<String> wordsList; // words in current quiz
+   private String correctAnswer; // correct country for the current word
    private int totalGuesses; // number of guesses made
    private int correctAnswers; // number of correct guesses
    private int guessRows; // number of rows displaying guess Buttons
    private SecureRandom random; // used to randomize the quiz
-   private Handler handler; // used to delay loading next flag
+   private Handler handler; // used to delay loading next images
    private Animation shakeAnimation; // animation for incorrect guess
 
    private LinearLayout quizLinearLayout; // layout that contains the quiz
-   private TextView questionNumberTextView; // shows current question #
-   private ImageView flagImageView; // displays a flag
-   private LinearLayout[] guessLinearLayouts; // rows of answer Buttons
-   private TextView answerTextView; // displays correct answer
+   private TextView guessWordTextView; // shows current question #
+   private ImageView manImageView; // displays a man
+   private LinearLayout row1LinearLayouts; // rows of word textviews
+   private LinearLayout row2LinearLayouts; // rows of answer textview and Buttons
+
+   private TextView letter1;
+   private TextView letter2;
+   private TextView letter3;
+   private TextView letter4;
+   private TextView letter5;
+   private EditText guessLetter;
+   private Button answer;  // guess a letter
+   private Button changeGame; // change the game
 
    // configures the MainActivityFragment when its View is created
    @Override
@@ -67,7 +78,7 @@ public class MainActivityFragment extends Fragment {
          inflater.inflate(R.layout.fragment_main, container, false);
 
       fileNameList = new ArrayList<>();
-      quizCountriesList = new ArrayList<>();
+      wordsList = new ArrayList<>();
       random = new SecureRandom();
       handler = new Handler();
 
@@ -79,71 +90,40 @@ public class MainActivityFragment extends Fragment {
       // get references to GUI components
       quizLinearLayout =
          (LinearLayout) view.findViewById(R.id.quizLinearLayout);
-      questionNumberTextView =
-         (TextView) view.findViewById(R.id.questionNumberTextView);
-      flagImageView = (ImageView) view.findViewById(R.id.flagImageView);
-      guessLinearLayouts = new LinearLayout[4];
-      guessLinearLayouts[0] =
+      guessWordTextView =
+         (TextView) view.findViewById(R.id.guessWordTextView);
+      manImageView = (ImageView) view.findViewById(R.id.manImageView);
+      row1LinearLayouts =
          (LinearLayout) view.findViewById(R.id.row1LinearLayout);
-      guessLinearLayouts[1] =
+      row2LinearLayouts =
          (LinearLayout) view.findViewById(R.id.row2LinearLayout);
-      guessLinearLayouts[2] =
-         (LinearLayout) view.findViewById(R.id.row3LinearLayout);
-      guessLinearLayouts[3] =
-         (LinearLayout) view.findViewById(R.id.row4LinearLayout);
-      answerTextView = (TextView) view.findViewById(R.id.answerTextView);
-
-      // configure listeners for the guess Buttons
-      for (LinearLayout row : guessLinearLayouts) {
-         for (int column = 0; column < row.getChildCount(); column++) {
-            Button button = (Button) row.getChildAt(column);
-            button.setOnClickListener(guessButtonListener);
-         }
-      }
+      letter1 = (TextView) view.findViewById(R.id.letter1);
+      letter2 = (TextView) view.findViewById(R.id.letter2);
+      letter3 = (TextView) view.findViewById(R.id.letter3);
+      letter4 = (TextView) view.findViewById(R.id.letter4);
+      letter5 = (TextView) view.findViewById(R.id.letter5);
+      guessLetter = (EditText) view.findViewById(R.id.guessLetter);
+      changeGame = (Button) view.findViewById(R.id.changeGame);
+      answer = (Button) view.findViewById(R.id.answer);
 
       // set questionNumberTextView's text
-      questionNumberTextView.setText(
+      guessWordTextView.setText(
          getString(R.string.question, 1, FLAGS_IN_QUIZ));
       return view; // return the fragment's view for display
    }
 
-   // update guessRows based on value in SharedPreferences
-   public void updateGuessRows(SharedPreferences sharedPreferences) {
-      // get the number of guess buttons that should be displayed
-      String choices =
-         sharedPreferences.getString(MainActivity.CHOICES, null);
-      guessRows = Integer.parseInt(choices) / 2;
-
-      // hide all quess button LinearLayouts
-      for (LinearLayout layout : guessLinearLayouts)
-         layout.setVisibility(View.GONE);
-
-      // display appropriate guess button LinearLayouts
-      for (int row = 0; row < guessRows; row++)
-         guessLinearLayouts[row].setVisibility(View.VISIBLE);
-   }
-
-   // update world regions for quiz based on values in SharedPreferences
-   public void updateRegions(SharedPreferences sharedPreferences) {
-      regionsSet =
-         sharedPreferences.getStringSet(MainActivity.REGIONS, null);
-   }
 
    // set up and start the next quiz
    public void resetQuiz() {
       // use AssetManager to get image file names for enabled regions
       AssetManager assets = getActivity().getAssets();
-      fileNameList.clear(); // empty list of image file names
+      wordsList.clear(); // empty list of image file names
 
       try {
-         // loop through each region
-         for (String region : regionsSet) {
-            // get a list of all flag image files in this region
-            String[] paths = assets.list(region);
+         String[] paths = assets.list("Hangman");
 
-            for (String path : paths)
-               fileNameList.add(path.replace(".png", ""));
-         }
+         for (String path : paths)
+            fileNameList.add(path.replace(".png", ""));
       }
       catch (IOException exception) {
          Log.e(TAG, "Error loading image file names", exception);
