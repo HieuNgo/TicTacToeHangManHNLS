@@ -42,7 +42,7 @@ public class MainActivityFragment extends Fragment {
    // String used when logging error messages
    private static final String TAG = "FlagQuiz Activity";
 
-   private static final int FLAGS_IN_QUIZ = 10;
+   private static final int WORDS_IN_QUIZ = 10;
 
    private List<String> fileNameList; // hangman file names
    private List<String> wordsList; // words in current quiz
@@ -108,7 +108,7 @@ public class MainActivityFragment extends Fragment {
 
       // set questionNumberTextView's text
       guessWordTextView.setText(
-         getString(R.string.question, 1, FLAGS_IN_QUIZ));
+         getString(R.string.question, 1, WORDS_IN_QUIZ));
       return view; // return the fragment's view for display
    }
 
@@ -131,22 +131,22 @@ public class MainActivityFragment extends Fragment {
 
       correctAnswers = 0; // reset the number of correct answers made
       totalGuesses = 0; // reset the total number of guesses the user made
-      quizCountriesList.clear(); // clear prior list of quiz countries
+      wordsList.clear(); // clear prior list of quiz countries
 
-      int flagCounter = 1;
-      int numberOfFlags = fileNameList.size();
+      int wordCounter = 1;
+      int numberOfWords = fileNameList.size();
 
       // add FLAGS_IN_QUIZ random file names to the quizCountriesList
-      while (flagCounter <= FLAGS_IN_QUIZ) {
-         int randomIndex = random.nextInt(numberOfFlags);
+      while (wordCounter <= WORDS_IN_QUIZ) {
+         int randomIndex = random.nextInt(numberOfWords);
 
          // get the random file name
          String filename = fileNameList.get(randomIndex);
 
          // if the region is enabled and it hasn't already been chosen
-         if (!quizCountriesList.contains(filename)) {
-            quizCountriesList.add(filename); // add the file to the list
-            ++flagCounter;
+         if (!wordsList.contains(filename)) {
+            wordsList.add(filename); // add the file to the list
+            ++wordCounter;
          }
       }
 
@@ -154,15 +154,18 @@ public class MainActivityFragment extends Fragment {
    }
 
    // after the user guesses a correct flag, load the next flag
-   private void loadNextFlag() {
+   private void loadNextWord() {
       // get file name of the next flag and remove it from the list
-      String nextImage = quizCountriesList.remove(0);
+      String nextImage = wordsList.remove(0);
       correctAnswer = nextImage; // update the correct answer
-      answerTextView.setText(""); // clear answerTextView
-
+      letter1.setText("");// clear answer
+       letter2.setText("");// clear answer
+       letter3.setText("");// clear answer
+       letter4.setText("");// clear answer
+       letter5.setText("");// clear answer
       // display current question number
-      questionNumberTextView.setText(getString(
-         R.string.question, (correctAnswers + 1), FLAGS_IN_QUIZ));
+      guessWordTextView.setText(getString(
+         R.string.question, (correctAnswers + 1), WORDS_IN_QUIZ));
 
       // extract the region from the next image's name
       String region = nextImage.substring(0, nextImage.indexOf('-'));
