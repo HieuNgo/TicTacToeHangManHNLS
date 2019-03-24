@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/colorDialogGridLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="2">
+
+    <SeekBar
+        android:id="@+id/alphaSeekBar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="5"
+        android:layout_column="1"
+        android:layout_gravity="fill_horizontal"
+        android:max="255" />
+
+    <TextView
+        android:id="@+id/alphaTextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="0"
+        android:layout_column="0"
+        android:layout_gravity="center_vertical|right"
+        android:text="@string/label_alpha" />
+
+    <SeekBar
+        android:id="@+id/alphaSeekBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="0"
+        android:layout_column="1"
+        android:layout_gravity="fill_horizontal"
+        android:max="255" />
+
+    <TextView
+        android:id="@+id/redTextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:layout_gravity="center_vertical|right"
+        android:text="@string/label_red" />
+
+    <SeekBar
+        android:id="@+id/redSeekBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:layout_gravity="fill_horizontal"
+        android:max="255" />
+
+    <SeekBar
+        android:id="@+id/redSeekBar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="6"
+        android:layout_column="1"
+        android:layout_gravity="fill_horizontal"
+        android:max="255" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/label_green"
+        android:id="@+id/greenTextView"
+        android:layout_gravity="center_vertical|right"
+        android:layout_column="0"
+        android:layout_row="2"/>
+
+    <SeekBar
+        android:id="@+id/greenSeekBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="2"
+        android:layout_column="1"
+        android:layout_gravity="fill_horizontal"
+        android:max="255" />
+
+    <SeekBar
+        android:id="@+id/greenSeekBar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="7"
+        android:layout_column="1"
+        android:layout_gravity="fill_horizontal"
+        android:max="255" />
+
+    <TextView
+        android:id="@+id/blueTextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="3"
+        android:layout_column="0"
+        android:layout_gravity="center_vertical|right"
+        android:text="@string/label_blue" />
+
+    <SeekBar
+        android:id="@+id/blueSeekBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="3"
+        android:layout_column="1"
+        android:layout_gravity="fill_horizontal"
+        android:max="255" />
+
+    <View
+        android:id="@+id/colorView1"
+        android:layout_width="409dp"
+        android:layout_height="@dimen/color_view_height"
+        android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill_horizontal" />
+
+    <TextView
+        android:id="@+id/alphaTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="5"
+        android:layout_column="0"
+        android:text="Alpha" />
+
+    <TextView
+        android:id="@+id/redTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="6"
+        android:layout_column="0"
+        android:text="Red" />
+
+    <TextView
+        android:id="@+id/greenTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="7"
+        android:layout_column="0"
+        android:text="Green" />
+
+    <TextView
+        android:id="@+id/blueTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_row="8"
+        android:layout_column="0"
+        android:text="Blue" />
+
+    <SeekBar
+        android:id="@+id/blueSeekBar2"
+        android:layout_width="369dp"
+        android:layout_height="wrap_content"
+        android:layout_row="8"
+        android:layout_column="1"
+        android:max="255" />
+
+    <View
+        android:id="@+id/colorView2"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_row="9"
+        android:layout_column="1" />
+
+</GridLayout>
