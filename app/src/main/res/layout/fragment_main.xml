@@ -44,35 +44,45 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_weight="1"
-          android:text="?" />
+          android:text="?"
+          android:textAlignment="center"
+          android:textSize="24sp" />
 
       <TextView
           android:id="@+id/letter2"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_weight="1"
-          android:text="?" />
+          android:text="?"
+          android:textAlignment="center"
+          android:textSize="24sp" />
 
       <TextView
           android:id="@+id/letter3"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_weight="1"
-          android:text="?" />
+          android:text="?"
+          android:textAlignment="center"
+          android:textSize="24sp" />
 
       <TextView
           android:id="@+id/letter4"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_weight="1"
-          android:text="?" />
+          android:text="?"
+          android:textAlignment="center"
+          android:textSize="24sp" />
 
       <TextView
           android:id="@+id/letter5"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_weight="1"
-          android:text="?" />
+          android:text="?"
+          android:textAlignment="center"
+          android:textSize="24sp" />
    </LinearLayout>
 
    <LinearLayout

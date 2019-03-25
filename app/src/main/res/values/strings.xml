@@ -1,5 +1,5 @@
 <resources>
-   <string name="app_name">Tic Tac Np</string>
+   <string name="app_name">Tic Tac No</string>
    <string name="action_settings">Settings</string>
    <string name="results">%1$d guesses, %2$.02f%% correct</string>
    <string name="incorrect_answer">Incorrect!</string>
@@ -21,6 +21,7 @@
     <string name="menuitem_delete">Delete Drawing</string>
     <string name="menuitem_line_width">Line Width</string>
     <string name="message_erase">Are you sure you want to delete your drawing?</string>
+    <string name="change_game">Change Game</string>
     <string name="title_color_dialog">Choose Color</string>
     <string name="title_line_width_dialog">Choose Line Width</string>
     <string name="title_picture_dialog">Choose Grid</string>
@@ -33,5 +34,6 @@
         <item>Four</item>
         <item>Five</item>
     </string-array>
+
 
 </resources>

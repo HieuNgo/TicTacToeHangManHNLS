@@ -112,9 +112,6 @@ public class MainActivityFragment extends Fragment {
       answer = (Button) view.findViewById(R.id.answer);
       answer.setOnClickListener(answerButtonListener);
       changeGame.setOnClickListener(changGamerButtonListener);
-      // set questionNumberTextView's text
-      guessWordTextView.setText(
-         getString(R.string.question, 1, WORDS_IN_QUIZ));
        AssetManager assets = getActivity().getAssets();
 
        try {
@@ -174,14 +171,12 @@ public class MainActivityFragment extends Fragment {
        int ranNum = rand.nextInt(1);
       String nextWord = wordsList.get(ranNum);
       correctAnswer = nextWord; // update the correct answer
-      letter1.setText("");// clear answer
-       letter2.setText("");// clear answer
-       letter3.setText("");// clear answer
-       letter4.setText("");// clear answer
-       letter5.setText("");// clear answer
+      letter1.setText("?");// clear answer
+       letter2.setText("?");// clear answer
+       letter3.setText("?");// clear answer
+       letter4.setText("?");// clear answer
+       letter5.setText("?");// clear answer
       // display current question number
-      guessWordTextView.setText(getString(
-         R.string.question, (correctAnswers + 1), WORDS_IN_QUIZ));
       // use AssetManager to load next image from assets folder
 
    }
@@ -241,7 +236,7 @@ public class MainActivityFragment extends Fragment {
 
              if (answer.indexOf(guess) == 0) {
                  int i = answer.indexOf(guess);
-                 if (letter1.getText() == "")
+                 if (letter1.getText() == "?")
                      ++correctAnswers; // increment the number of correct answers
                  letter1.setText(""+guess);
                  letter1.setTextColor(
@@ -250,7 +245,7 @@ public class MainActivityFragment extends Fragment {
 
              }
              if (answer.indexOf(guess, 1) == 1) {
-                 if (letter2.getText() == "")
+                 if (letter2.getText() == "?")
                      ++correctAnswers; // increment the number of correct answers
                  letter2.setText(""+guess);
                  letter2.setTextColor(
@@ -258,7 +253,7 @@ public class MainActivityFragment extends Fragment {
                                  getContext().getTheme()));
              }
              if (answer.indexOf(guess, 2) == 2) {
-                 if (letter3.getText() == "")
+                 if (letter3.getText() == "?")
                      ++correctAnswers; // increment the number of correct answers
                  letter3.setText(""+guess);
                  letter3.setTextColor(
@@ -266,7 +261,7 @@ public class MainActivityFragment extends Fragment {
                                  getContext().getTheme()));
              }
              if (answer.indexOf(guess, 3) == 3) {
-                 if (letter4.getText() == "")
+                 if (letter4.getText() == "?")
                      ++correctAnswers; // increment the number of correct answers
                  letter4.setText(""+guess);
                  letter4.setTextColor(
@@ -274,7 +269,7 @@ public class MainActivityFragment extends Fragment {
                                  getContext().getTheme()));
              }
              if (answer.indexOf(guess, 4) == 4) {
-                 if (letter5.getText() == "")
+                 if (letter5.getText() == "?")
                      ++correctAnswers; // increment the number of correct answers
                  letter5.setText(""+guess);
                  letter5.setTextColor(
@@ -284,7 +279,16 @@ public class MainActivityFragment extends Fragment {
 
             // if the user has correctly identified FLAGS_IN_QUIZ flags
             if (correctAnswers == 5) {
-                Toast.makeText(getContext(), "Winner winner chicken dinner!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Winner Winner Chicken Dinner!", Toast.LENGTH_SHORT).show();
+                // load the next flag after a 2-second delay
+                handler.postDelayed(
+                        new Runnable() {
+                            @Override
+                            public void run() {
+                                animate(true); // animate the flag off the screen
+                            }
+                        }, 2000); // 2000 milliseconds for 2-second delay
+
                 resetQuiz();
             }
          }

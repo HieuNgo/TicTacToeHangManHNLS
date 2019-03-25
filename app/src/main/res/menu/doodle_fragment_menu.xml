@@ -7,7 +7,11 @@
         android:icon="@drawable/ic_palette_24dp"
         app:showAsAction="ifRoom">
     </item>
-
+    <item
+        android:id="@+id/picture"
+        android:title="Picture"
+        android:icon="@drawable/ic_grid_on_black_24dp"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/line_width"
         android:title="@string/menuitem_line_width"
@@ -19,6 +23,13 @@
         android:id="@+id/delete_drawing"
         android:title="@string/menuitem_delete"
         android:icon="@drawable/ic_delete_24dp"
+        app:showAsAction="ifRoom">
+    </item>
+
+    <item
+        android:id="@+id/change_game"
+        android:title="@string/change_game"
+        android:icon="@drawable/ic_child_care_black_24dp"
         app:showAsAction="ifRoom">
     </item>
 

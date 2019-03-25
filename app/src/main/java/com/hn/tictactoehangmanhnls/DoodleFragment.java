@@ -11,6 +11,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,7 +41,7 @@ public class DoodleFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view =
-                inflater.inflate(R.layout.fragment_main, container, false);
+                inflater.inflate(R.layout.fragment_doodle, container, false);
 
         setHasOptionsMenu(true); // this fragment has menu items to display
 
@@ -177,6 +178,10 @@ public class DoodleFragment extends Fragment {
                 PictureDialogFragment pictureDialog = new PictureDialogFragment();
                 pictureDialog.show(getFragmentManager(), "Picture Dialog");
                 return true;
+            case R.id.change_game:
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.doodleFragment, new MainActivityFragment(), "Quiz Fragment");
+                ft.commit();
         }
 
         return super.onOptionsItemSelected(item);

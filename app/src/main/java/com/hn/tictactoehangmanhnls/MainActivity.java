@@ -82,20 +82,13 @@ public class MainActivity extends AppCompatActivity{
         // display the app's menu only in portrait orientation
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             // inflate the menu
-            getMenuInflater().inflate(R.menu.menu_main, menu);
+            // getMenuInflater().inflate(R.menu.menu_main, menu);
             return true;
         }
         else
             return false;
     }
 
-    // displays the SettingsActivity when running on a phone
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent preferencesIntent = new Intent(this, SettingsActivity.class);
-        startActivity(preferencesIntent);
-        return super.onOptionsItemSelected(item);
-    }
 
     // listener for changes to the app's SharedPreferences
     private OnSharedPreferenceChangeListener preferencesChangeListener =
